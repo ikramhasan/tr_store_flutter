@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tr_store_lite/features/core/presentation/styles/spacing.dart';
+import 'package:tr_store_lite/features/core/presentation/styles/transparent_image.dart';
 import 'package:tr_store_lite/features/products/domain/entities/product.dart';
 import 'package:tr_store_lite/features/products/presentation/components/add_to_cart_button.dart';
 import 'package:tr_store_lite/features/products/presentation/product_details_page.dart';
@@ -33,9 +34,11 @@ class ProductCard extends StatelessWidget {
           child: Column(
             children: [
               verticalSpacing8,
-              Image.network(
-                product.image,
+              FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image: product.image,
                 height: 200,
+                fit: BoxFit.cover,
               ),
               Padding(
                 padding: const EdgeInsets.all(10),

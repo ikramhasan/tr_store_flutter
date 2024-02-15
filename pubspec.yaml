@@ -41,6 +41,7 @@ dependencies:
   fast_immutable_collections: ^10.1.1
   fpdart: ^1.1.0
   json_annotation: ^4.8.1
+  skeletonizer: ^1.0.1
 
 dev_dependencies:
   flutter_test:

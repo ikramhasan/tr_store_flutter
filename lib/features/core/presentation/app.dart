@@ -3,7 +3,6 @@ import 'package:tr_store_lite/features/products/application/product_cubit.dart';
 import 'package:tr_store_lite/features/products/application/product_details/product_details_cubit.dart';
 import 'package:tr_store_lite/features/products/domain/interfaces/i_product_repository.dart';
 import 'package:tr_store_lite/features/products/infrastructure/product_repository.dart';
-import 'package:tr_store_lite/features/products/presentation/product_details_page.dart';
 import 'package:tr_store_lite/features/products/presentation/products_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
