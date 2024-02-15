@@ -14,9 +14,19 @@ class ProductRepository implements IProductRepository {
   final _baseUrl = 'https://fakestoreapi.com';
 
   @override
-  Future<Either<Failure, Product>> fetchProduct(int id) {
-    // TODO: implement fetchProduct
-    throw UnimplementedError();
+  Future<Either<Failure, Product>> fetchProduct(int id) async {
+    try {
+      final response = await http.get(Uri.parse('$_baseUrl/products/$id'));
+      if (response.statusCode == 200) {
+        final jsonMap = jsonDecode(response.body) as Map<String, dynamic>;
+        final product = Product.fromJson(jsonMap);
+        return right(product);
+      } else {
+        return left(Failure.general());
+      }
+    } catch (e) {
+      return left(Failure.general());
+    }
   }
 
   @override

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tr_store_lite/features/core/presentation/styles/spacing.dart';
 import 'package:tr_store_lite/features/products/domain/entities/product.dart';
 import 'package:tr_store_lite/features/products/presentation/components/add_to_cart_button.dart';
+import 'package:tr_store_lite/features/products/presentation/product_details_page.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({Key? key, required this.product}) : super(key: key);
@@ -12,7 +13,13 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // TOOO: Navigate to product details page
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsPage(
+              productId: product.id,
+            ),
+          ),
+        );
       },
       child: Card(
         shape: RoundedRectangleBorder(
