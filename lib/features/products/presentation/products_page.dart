@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import 'package:tr_store_lite/features/cart/application/cart_cubit.dart';
+import 'package:tr_store_lite/features/cart/presentation/cart_page.dart';
+import 'package:tr_store_lite/features/cart/presentation/components/cart_icon.dart';
 import 'package:tr_store_lite/features/products/application/product_cubit.dart';
 import 'package:tr_store_lite/features/products/presentation/components/product_card.dart';
 
@@ -12,23 +14,28 @@ class ProductsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Products'),
+        actions: const [
+          CartIcon(),
+        ],
       ),
       body: BlocBuilder<ProductCubit, ProductState>(
         builder: (context, state) {
-          return Skeletonizer(
-            enabled: state.loading,
-            child: GridView.builder(
-              itemCount: state.products.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.55,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              itemBuilder: (context, index) {
-                return ProductCard(product: state.products[index]);
-              },
+          if (state.loading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return GridView.builder(
+            itemCount: state.products.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.55,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
             ),
+            itemBuilder: (context, index) {
+              return ProductCard(product: state.products[index]);
+            },
           );
         },
       ),

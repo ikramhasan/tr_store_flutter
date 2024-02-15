@@ -16,8 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CartState {
-  List<CartItem> get items => throw _privateConstructorUsedError;
-  int get total => throw _privateConstructorUsedError;
+  List<Product> get products => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CartStateCopyWith<CartState> get copyWith =>
@@ -29,7 +28,7 @@ abstract class $CartStateCopyWith<$Res> {
   factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
       _$CartStateCopyWithImpl<$Res, CartState>;
   @useResult
-  $Res call({List<CartItem> items, int total});
+  $Res call({List<Product> products});
 }
 
 /// @nodoc
@@ -45,18 +44,13 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? items = null,
-    Object? total = null,
+    Object? products = null,
   }) {
     return _then(_value.copyWith(
-      items: null == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<CartItem>,
-      total: null == total
-          ? _value.total
-          : total // ignore: cast_nullable_to_non_nullable
-              as int,
+      products: null == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
     ) as $Val);
   }
 }
@@ -69,7 +63,7 @@ abstract class _$$CartStateImplCopyWith<$Res>
       __$$CartStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<CartItem> items, int total});
+  $Res call({List<Product> products});
 }
 
 /// @nodoc
@@ -83,18 +77,13 @@ class __$$CartStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? items = null,
-    Object? total = null,
+    Object? products = null,
   }) {
     return _then(_$CartStateImpl(
-      items: null == items
-          ? _value._items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<CartItem>,
-      total: null == total
-          ? _value.total
-          : total // ignore: cast_nullable_to_non_nullable
-              as int,
+      products: null == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
     ));
   }
 }
@@ -102,24 +91,20 @@ class __$$CartStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CartStateImpl implements _CartState {
-  const _$CartStateImpl(
-      {required final List<CartItem> items, required this.total})
-      : _items = items;
+  const _$CartStateImpl({required final List<Product> products})
+      : _products = products;
 
-  final List<CartItem> _items;
+  final List<Product> _products;
   @override
-  List<CartItem> get items {
-    if (_items is EqualUnmodifiableListView) return _items;
+  List<Product> get products {
+    if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
+    return EqualUnmodifiableListView(_products);
   }
 
   @override
-  final int total;
-
-  @override
   String toString() {
-    return 'CartState(items: $items, total: $total)';
+    return 'CartState(products: $products)';
   }
 
   @override
@@ -127,13 +112,12 @@ class _$CartStateImpl implements _CartState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CartStateImpl &&
-            const DeepCollectionEquality().equals(other._items, _items) &&
-            (identical(other.total, total) || other.total == total));
+            const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_items), total);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
@@ -143,14 +127,11 @@ class _$CartStateImpl implements _CartState {
 }
 
 abstract class _CartState implements CartState {
-  const factory _CartState(
-      {required final List<CartItem> items,
-      required final int total}) = _$CartStateImpl;
+  const factory _CartState({required final List<Product> products}) =
+      _$CartStateImpl;
 
   @override
-  List<CartItem> get items;
-  @override
-  int get total;
+  List<Product> get products;
   @override
   @JsonKey(ignore: true)
   _$$CartStateImplCopyWith<_$CartStateImpl> get copyWith =>

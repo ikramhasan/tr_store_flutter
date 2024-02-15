@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tr_store_lite/features/cart/application/cart_cubit.dart';
 import 'package:tr_store_lite/features/products/application/product_cubit.dart';
 import 'package:tr_store_lite/features/products/application/product_details/product_details_cubit.dart';
 import 'package:tr_store_lite/features/products/domain/interfaces/i_product_repository.dart';
@@ -29,6 +30,7 @@ class TRStoreApp extends StatelessWidget {
               RepositoryProvider.of<IProductRepository>(context),
             ),
           ),
+          BlocProvider<CartCubit>(create: (context) => CartCubit()),
         ],
         child: MaterialApp(
           title: 'TR Store Lite',

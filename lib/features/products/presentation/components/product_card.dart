@@ -68,7 +68,7 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
               verticalSpacing8,
-              const AddToCartButton(),
+              AddToCartButton(product: product),
             ],
           ),
         ),
