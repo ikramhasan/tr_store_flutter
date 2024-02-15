@@ -41,9 +41,10 @@ class CartPage extends StatelessWidget {
         height: 80,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Center(
+          child: Align(
+            alignment: Alignment.topCenter,
             child: Text(
-              'Total: \$ ${context.select((CartCubit cubit) => cubit.state.products.fold(0.0, (previousValue, element) => previousValue + element.price)).toStringAsFixed(2)}',
+              'Total: \$${context.select((CartCubit cubit) => cubit.state.products.fold(0.0, (previousValue, element) => previousValue + element.price)).toStringAsFixed(2)}',
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,

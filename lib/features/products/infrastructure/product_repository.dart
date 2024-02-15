@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
@@ -16,7 +17,14 @@ class ProductRepository implements IProductRepository {
   @override
   Future<Either<Failure, Product>> fetchProduct(int id) async {
     try {
-      final response = await http.get(Uri.parse('$_baseUrl/products/$id'));
+      final response =
+          await http.get(Uri.parse('$_baseUrl/products/$id')).timeout(
+        const Duration(seconds: 5),
+        onTimeout: () {
+          throw TimeoutException('Request timed out');
+        },
+      );
+      print(response.body);
       if (response.statusCode == 200) {
         final jsonMap = jsonDecode(response.body) as Map<String, dynamic>;
         final product = Product.fromJson(jsonMap);
@@ -25,14 +33,23 @@ class ProductRepository implements IProductRepository {
         return left(Failure.general());
       }
     } catch (e) {
-      return left(Failure.general());
+      if (e is TimeoutException) {
+        return left(Failure.timeout());
+      } else {
+        return left(Failure.general());
+      }
     }
   }
 
   @override
   Future<Either<Failure, IList<Product>>> fetchProducts() async {
     try {
-      final response = await http.get(Uri.parse('$_baseUrl/products'));
+      final response = await http.get(Uri.parse('$_baseUrl/products')).timeout(
+        const Duration(seconds: 5),
+        onTimeout: () {
+          throw TimeoutException('Request timed out');
+        },
+      );
       if (response.statusCode == 200) {
         final jsonList = jsonDecode(response.body) as List<dynamic>;
         final products = jsonList
@@ -44,7 +61,11 @@ class ProductRepository implements IProductRepository {
         return left(Failure.general());
       }
     } catch (e) {
-      return left(Failure.general());
+      if (e is TimeoutException) {
+        return left(Failure.timeout());
+      } else {
+        return left(Failure.general());
+      }
     }
   }
 }

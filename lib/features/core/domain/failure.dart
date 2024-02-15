@@ -18,6 +18,11 @@ class Failure with _$Failure {
         message: '',
       );
 
+  factory Failure.timeout() => const _Failure(
+        code: 'server_timeout',
+        message: 'The server took too long to respond.',
+      );
+
   factory Failure.general() => const _Failure(
         code: 'general',
         message:

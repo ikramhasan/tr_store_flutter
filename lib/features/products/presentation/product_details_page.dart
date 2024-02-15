@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:tr_store_lite/features/cart/application/cart_cubit.dart';
 import 'package:tr_store_lite/features/cart/presentation/components/cart_icon.dart';
+import 'package:tr_store_lite/features/core/domain/failure.dart';
 import 'package:tr_store_lite/features/core/presentation/styles/spacing.dart';
 import 'package:tr_store_lite/features/products/application/product_details/product_details_cubit.dart';
 
@@ -31,11 +32,20 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
         child: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
-          buildWhen: (previous, current) => previous.product != current.product,
           builder: (context, state) {
             if (state.loading) {
               return const Center(
                 child: CircularProgressIndicator(),
+              );
+            } else if (state.failure != Failure.none()) {
+              return Center(
+                child: Text(
+                  state.failure.message,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               );
             }
             return Column(
