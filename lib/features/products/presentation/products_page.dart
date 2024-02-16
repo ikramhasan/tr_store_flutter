@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tr_store_lite/features/cart/application/cart_cubit.dart';
-import 'package:tr_store_lite/features/cart/presentation/cart_page.dart';
 import 'package:tr_store_lite/features/cart/presentation/components/cart_icon.dart';
 import 'package:tr_store_lite/features/products/application/product_cubit.dart';
 import 'package:tr_store_lite/features/products/presentation/components/product_card.dart';
+import 'package:tr_store_lite/features/products/presentation/components/product_grid_shimmer_loading.dart';
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({super.key});
@@ -21,9 +20,7 @@ class ProductsPage extends StatelessWidget {
       body: BlocBuilder<ProductCubit, ProductState>(
         builder: (context, state) {
           if (state.loading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const ProductGridShimmerLoading();
           }
           return GridView.builder(
             itemCount: state.products.length,
