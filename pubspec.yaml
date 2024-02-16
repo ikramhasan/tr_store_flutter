@@ -42,6 +42,12 @@ dependencies:
   json_annotation: ^4.8.1
   flutter_rating_bar: ^4.0.1
   badges: ^3.1.2
+  drift: ^2.15.0
+  sqlite3: ^2.4.0
+  sqlite3_flutter_libs: ^0.5.20
+  path_provider: ^2.1.2
+  path: ^1.8.3
+  uuid: ^4.3.3
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +60,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   freezed: ^2.4.7
+  drift_dev: ^2.15.0
   json_serializable: ^6.7.1
   build_runner: ^2.4.8
 

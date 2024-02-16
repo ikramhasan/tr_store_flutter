@@ -19,7 +19,7 @@ class CartIcon extends StatelessWidget {
       },
       icon: BlocBuilder<CartCubit, CartState>(
         builder: (context, state) {
-          if (state.products.isEmpty) {
+          if (state.items.isEmpty) {
             return const Icon(
               Icons.shopping_cart,
             );
@@ -27,7 +27,7 @@ class CartIcon extends StatelessWidget {
             return badges.Badge(
               position: badges.BadgePosition.topEnd(top: -15),
               badgeContent: Text(
-                state.products.length.toString(),
+                state.items.length.toString(),
                 style: const TextStyle(
                   color: Colors.white,
                 ),

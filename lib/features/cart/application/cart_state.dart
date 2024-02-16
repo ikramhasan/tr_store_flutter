@@ -3,10 +3,10 @@ part of 'cart_cubit.dart';
 @freezed
 class CartState with _$CartState {
   const factory CartState({
-    required List<Product> products,
+    required List<CartItem> items,
   }) = _CartState;
 
   factory CartState.initial() => const _CartState(
-        products: [],
+        items: [],
       );
 }

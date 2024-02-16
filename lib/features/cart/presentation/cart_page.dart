@@ -13,22 +13,24 @@ class CartPage extends StatelessWidget {
       ),
       body: BlocBuilder<CartCubit, CartState>(
         builder: (context, state) {
-          if (state.products.isEmpty) {
+          if (state.items.isEmpty) {
             return const Center(
               child: Text('Your cart is empty'),
             );
           }
           return ListView.builder(
-            itemCount: state.products.length,
+            itemCount: state.items.length,
             itemBuilder: (context, index) {
-              final product = state.products[index];
+              final product = state.items[index];
               return ListTile(
                 leading: Image.network(product.image),
                 title: Text(product.title),
                 subtitle: Text('Price: \$ ${product.price}'),
                 trailing: IconButton(
                   onPressed: () {
-                    context.read<CartCubit>().removeFromCart(index);
+                    context.read<CartCubit>().removeFromCart(
+                          state.items[index].id,
+                        );
                   },
                   icon: const Icon(Icons.delete),
                 ),
@@ -44,7 +46,7 @@ class CartPage extends StatelessWidget {
           child: Align(
             alignment: Alignment.topCenter,
             child: Text(
-              'Total: \$${context.select((CartCubit cubit) => cubit.state.products.fold(0.0, (previousValue, element) => previousValue + element.price)).toStringAsFixed(2)}',
+              'Total: \$${context.select((CartCubit cubit) => cubit.state.items.fold(0.0, (previousValue, element) => previousValue + element.price)).toStringAsFixed(2)}',
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
